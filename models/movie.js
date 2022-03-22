@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const validator = require("validator");
+const mongoose = require('mongoose');
+const validator = require('validator');
 
 const muvieSchema = new mongoose.Schema({
   country: {
@@ -42,7 +42,7 @@ const muvieSchema = new mongoose.Schema({
       validator(value) {
         return validator.isURL(value);
       },
-      message: "Поле должно содержать ссылку.",
+      message: 'Поле должно содержать ссылку.',
     },
   },
 
@@ -53,7 +53,7 @@ const muvieSchema = new mongoose.Schema({
       validator(value) {
         return validator.isURL(value);
       },
-      message: "Поле должно содержать ссылку.",
+      message: 'Поле должно содержать ссылку.',
     },
   },
 
@@ -64,19 +64,19 @@ const muvieSchema = new mongoose.Schema({
       validator(value) {
         return validator.isURL(value);
       },
-      message: "Поле должно содержать ссылку.",
+      message: 'Поле должно содержать ссылку.',
     },
   },
 
   owner: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "user",
+    ref: 'user',
     required: true,
   },
 
   movieId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "movie",
+    ref: 'movie',
     required: true,
   },
 
