@@ -33,18 +33,18 @@ module.exports.createMovie = (req, res, next) => {
     thumbnail,
     nameRU,
     nameEN,
-    movieId: req.user._id, // Пока нет документации к MoviesExplorer
+    movieId: req.user._id, //Пока нет документации к MoviesExplorer
     owner: req.user._id,
   })
     .then((movie) => res.send({ data: movie }))
     .catch((err) => {
-      if (err.name === 'ValidationError' || err.name === 'CastError') {
+      if (err.name === "ValidationError" || err.name === "CastError") {
         next(
           new BadRequestError(
             `${Object.values(err.errors)
               .map((error) => error.message)
-              .join(', ')}`,
-          ),
+              .join(", ")}`
+          )
         );
       } else {
         next(err);
@@ -61,13 +61,13 @@ module.exports.deleteMovie = (req, res, next) => {
         if (String(cardData.owner).includes(userId)) {
           return Movie.findByIdAndRemove(idMovie)
             .then(() => {
-              res.send({ message: 'Карточка удалена.' });
+              res.send({ message: 'Фильм удален.' });
             })
             .catch(next);
         }
-        return next(new ForbiddenError('Вы не можете удалять чужие карточки.'));
+        return next(new ForbiddenError('Вы не можете удалять чужие фильмы.'));
       }
-      return next(new NotFoundError('Карточка не найдена.'));
+      return next(new NotFoundError('Фильм не найден.'));
     })
     .catch(next);
 };
