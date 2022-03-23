@@ -1,5 +1,5 @@
 const { celebrate, Joi } = require('celebrate');
-//const validator = require('validator');
+// const validator = require('validator');
 
 const validateRegisterBody = celebrate({
   body: {

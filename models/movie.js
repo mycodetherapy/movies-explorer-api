@@ -6,7 +6,7 @@ const muvieSchema = new mongoose.Schema({
     type: String,
     required: true,
     minlength: 2,
-    maxlength: 30,
+    maxlength: 74,
   },
 
   director: {
@@ -24,8 +24,7 @@ const muvieSchema = new mongoose.Schema({
   year: {
     type: String,
     required: true,
-    minlength: 4,
-    maxlength: 4,
+    length: 4,
   },
 
   description: {
@@ -84,14 +83,14 @@ const muvieSchema = new mongoose.Schema({
     type: String,
     required: true,
     minlength: 2,
-    maxlength: 30,
+    maxlength: 50,
   },
 
   nameEN: {
     type: String,
     required: true,
     minlength: 2,
-    maxlength: 30,
+    maxlength: 50,
   },
 });
 
