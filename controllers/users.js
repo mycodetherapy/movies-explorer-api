@@ -42,9 +42,9 @@ module.exports.login = (req, res, next) => {
 };
 
 module.exports.getUserInfo = (req, res, next) => {
-  //console.log(req.body._id);
+  // console.log(req.body._id);
   User.findById(req.user._id)
-  //User.findById(req.body._id)
+  // User.findById(req.body._id)
     .then((users) => {
       if (!users) {
         throw new NotFoundError('Пользователь не найден.');
