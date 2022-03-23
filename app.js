@@ -14,14 +14,12 @@ app.use(express.json());
 
 mongoose.connect('mongodb://localhost:27017/moviedb', {
   useNewUrlParser: true,
-  // useUnifiedTopology: true
-  // useCreateIndex: true,
-  // useFindAndModify: false
 });
 
 app.post('/signin', validateRegisterBody, login);
 app.post('/signup', validateRegisterBody, createUser);
 app.use(auth);
+app.use('/movies', require('./routes/movies'));
 app.use('/users', require('./routes/users'));
 
 app.use((req, res, next) => {

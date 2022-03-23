@@ -32,7 +32,7 @@ const muvieSchema = new mongoose.Schema({
     type: String,
     required: true,
     minlength: 2,
-    maxlength: 40,
+    maxlength: 300,
   },
 
   image: {
