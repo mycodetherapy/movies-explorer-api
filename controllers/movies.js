@@ -33,18 +33,18 @@ module.exports.createMovie = (req, res, next) => {
     thumbnail,
     nameRU,
     nameEN,
-    movieId: req.user._id, //Пока нет документации к MoviesExplorer
+    movieId: req.user._id, // Пока нет документации к MoviesExplorer
     owner: req.user._id,
   })
     .then((movie) => res.send({ data: movie }))
     .catch((err) => {
-      if (err.name === "ValidationError" || err.name === "CastError") {
+      if (err.name === 'ValidationError' || err.name === 'CastError') {
         next(
           new BadRequestError(
             `${Object.values(err.errors)
               .map((error) => error.message)
-              .join(", ")}`
-          )
+              .join(', ')}`,
+          ),
         );
       } else {
         next(err);

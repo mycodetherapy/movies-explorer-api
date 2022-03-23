@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const { PORT = 3000 } = process.env;
 const app = express();
 const { errors } = require('celebrate');
+const helmet = require('helmet');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { limiter } = require('./limiter');
 const auth = require('./middlewares/auth');
@@ -18,6 +19,7 @@ mongoose.connect('mongodb://localhost:27017/moviesdb', {
   useNewUrlParser: true,
 });
 
+app.use(helmet());
 app.use(limiter);
 app.use(requestLogger);
 
