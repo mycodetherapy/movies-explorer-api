@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const { PORT = 3000 } = process.env;
 const app = express();
 const { errors } = require('celebrate');
-//const cors = require('cors');
+// const cors = require('cors');
 const helmet = require('helmet');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { limiter } = require('./limiter');
@@ -15,7 +15,7 @@ const errorsHandler = require('./middlewares/error-handler');
 const { NotFoundError } = require('./errors');
 
 app.use(express.json());
-//app.use(cors);
+// app.use(cors);
 
 mongoose.connect('mongodb://localhost:27017/moviesdb', {
   useNewUrlParser: true,
