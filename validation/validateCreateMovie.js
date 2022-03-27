@@ -79,6 +79,12 @@ const validateCreateMovie = celebrate({
         'string.max': 'Максимальная длина поля 50 символов.',
         'any.required': 'Поле обязательно для заполнения.',
       }),
+    movieId: Joi.number().integer()
+      .positive()
+      .required()
+      .messages({
+        'any.required': 'Поле обязательно для заполнения.',
+      }),
   },
 });
 
