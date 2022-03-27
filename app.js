@@ -9,7 +9,7 @@ const helmet = require('helmet');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { limiter } = require('./limiter');
 const auth = require('./middlewares/auth');
-const { validateRegisterBody } = require('./validation');
+const { validateRegisterBody, validateLoginBody } = require('./validation');
 const { login, createUser } = require('./controllers/users');
 const errorsHandler = require('./middlewares/error-handler');
 const { NotFoundError } = require('./errors');
@@ -25,7 +25,7 @@ app.use(helmet());
 app.use(limiter);
 app.use(requestLogger);
 
-app.post('/signin', validateRegisterBody, login);
+app.post('/signin', validateLoginBody, login);
 app.post('/signup', validateRegisterBody, createUser);
 app.use(auth);
 app.use('/users', require('./routes/users'));
