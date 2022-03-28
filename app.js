@@ -28,8 +28,8 @@ app.use(requestLogger);
 app.post('/signin', validateLoginBody, login);
 app.post('/signup', validateRegisterBody, createUser);
 app.use(auth);
-app.use('/users', require('./routes/users'));
-app.use('/movies', require('./routes/movies'));
+app.use(require('./routes/users'));
+app.use(require('./routes/movies'));
 
 app.use((req, res, next) => {
   next(new NotFoundError('Маршрут не существует.'));
