@@ -6,6 +6,7 @@ const app = express();
 const { errors } = require('celebrate');
 // const cors = require('cors');
 const helmet = require('helmet');
+const router = require('./routes');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { limiter } = require('./limiter');
 const auth = require('./middlewares/auth');
@@ -22,18 +23,10 @@ mongoose.connect('mongodb://localhost:27017/moviesdb', {
 });
 
 app.use(helmet());
-app.use(limiter);
 app.use(requestLogger);
+app.use(limiter);
 
-app.post('/signin', validateLoginBody, login);
-app.post('/signup', validateRegisterBody, createUser);
-app.use(auth);
-app.use(require('./routes/users'));
-app.use(require('./routes/movies'));
-
-app.use((req, res, next) => {
-  next(new NotFoundError('Маршрут не существует.'));
-});
+app.use(router);
 
 app.use(errorLogger);
 app.use(errors());
