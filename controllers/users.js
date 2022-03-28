@@ -71,6 +71,8 @@ module.exports.updateUser = (req, res, next) => {
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new BadRequestError(err.message));
+      } else if (err.name === 'MongoError' || err.code === 11000) {
+        next(new DuplicateEmailError('Пользователь с таким эмейлом уже существует.'));
       } else {
         next(err);
       }
